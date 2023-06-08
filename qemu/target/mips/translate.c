@@ -30940,7 +30940,7 @@ static void mips_tr_translate_insn(DisasContextBase *dcbase, CPUState *cs)
     }
 
     // Unicorn: trace this instruction on request
-    if (HOOK_EXISTS_BOUNDED(uc, UC_HOOK_CODE, ctx->base.pc_next)) {
+    if (HOOK_EXISTS_BOUNDED(uc, UC_HOOK_CODE, ctx->base.pc_next)  && !(ctx->hflags & MIPS_HFLAG_BMASK)) {
 
         // Sync PC in advance
         gen_save_pc(tcg_ctx, ctx->base.pc_next);
